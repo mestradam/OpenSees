@@ -16,19 +16,19 @@ RUN apt-get update && apt-get install -y \
     libarpack2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /home/user/bin /home/user/lib
+RUN useradd -m user
 
-RUN mkdir -p /home/user/OpenSees
+RUN mkdir -p /home/user/bin /home/user/lib /home/user/OpenSees
 
 WORKDIR /home/user/OpenSees
 
 RUN git clone https://github.com/mestradam/OpenSees.git /home/user/OpenSees
 
-RUN make
-
-RUN useradd -m user && chown -R user:user /home/user
+RUN chown -R user:user /home/user
 
 USER user
+
+RUN make
 ENV HOME=/home/user
 ENV PATH=$HOME/bin:$PATH
 
