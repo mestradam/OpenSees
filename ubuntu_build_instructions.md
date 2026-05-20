@@ -6,7 +6,7 @@
 cd ~
 mkdir bin
 mkdir lib
-git clone https://github.com/eesd-epfl/OpenSees.git
+git clone https://github.com/mestradam/OpenSees.git
 ```
 
 2. Dependencies needed
