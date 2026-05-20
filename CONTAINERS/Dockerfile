@@ -3,13 +3,14 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    git \
     make \
     tcl8.6 \
     tcl8.6-dev \
     gcc \
     g++ \
     gfortran \
-    hdf5-dev \
+    libhdf5-dev \
     liblapack-dev \
     libblas-dev \
     libarpack2-dev \
@@ -17,9 +18,11 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir -p /home/user/bin /home/user/lib
 
-RUN git clone https://github.com/mestradam/OpenSees.git /home/user/OpenSees
+RUN mkdir -p /home/user/OpenSees
 
 WORKDIR /home/user/OpenSees
+
+RUN git clone https://github.com/mestradam/OpenSees.git /home/user/OpenSees
 
 RUN make
 
